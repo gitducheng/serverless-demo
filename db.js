@@ -1,6 +1,12 @@
 const sites = {
     localhost:{
-        code: "response.send('qwer')",
+        code: `var request = require('request');
+        request('http://www.baidu.com', function (error, res, body) {
+            if (!error && res.statusCode == 200) {
+                response.send(body)
+            }
+        })`
+        // code: "response.send('qwer')",
     }
 }
 

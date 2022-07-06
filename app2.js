@@ -1,4 +1,5 @@
 const express = require('express');
+var request = require('request');
 const app = express();
 const {NodeVM} = require('vm2');
 const dbData = require('./db')
@@ -43,7 +44,17 @@ const runFun = (response, code) => {
 app.get('/dcc', function (_, response) {
     const host_name = _.headers.host.split(':')[0]
     console.log(dbData[host_name].code);
+
+    // request('http://www.baidu.com', function (error, res, body) {
+    //     if (!error && res.statusCode == 200) {
+    //         response.send(body)
+    //     }
+    // })
+
+
+
     runFun(response, dbData[host_name].code);
+    // response.send('qwer');
 })
 
 app.get('*', function (request, response) {
